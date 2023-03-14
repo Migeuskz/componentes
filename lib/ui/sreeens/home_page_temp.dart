@@ -1,3 +1,4 @@
+import 'package:componentes/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTemp extends StatelessWidget {
@@ -9,31 +10,40 @@ class HomePageTemp extends StatelessWidget {
       appBar: AppBar(
         title: const Text('App de componentes'),
       ),
-      body: ListView(
-        children: const [
-          ListTile(
-            title: Text('Stray Kids everywere all around the world'),
-            subtitle: Text('You make Stray Kids Stay'),
-          ),
-          Divider(
-            thickness: 4.0,
-            color: Colors.blue,
-          ),
-          ListTile(
-            title: Text('Incluso si hablo en voz alta, nadie escucha'),
-            subtitle: Text('Another Day - Stray Kids'),
-          ),
-          Divider(
-            thickness: 4.0,
-            color: Colors.blue,
-          ),
-          ListTile(
-            title: Text(
-                'Honestly Without you in my lif Deep inside I ve never felt alive'),
-            subtitle: Text('Deep End - Stray Kids'),
-          ),
-        ],
-      ),
+      body: _lista(),
     );
   }
+}
+
+Widget _lista() {
+  print(menuProvider.opciones);
+  return ListView(
+    children: _listaItems(),
+  );
+}
+
+List<Widget> _listaItems() {
+  return const [
+    ListTile(
+      title: Text('Stray Kids everywere all around the world'),
+      subtitle: Text('You make Stray Kids Stay'),
+    ),
+    Divider(
+      thickness: 4.0,
+      color: Colors.blue,
+    ),
+    ListTile(
+      title: Text('Incluso si hablo en voz alta, nadie escucha'),
+      subtitle: Text('Another Day - Stray Kids'),
+    ),
+    Divider(
+      thickness: 4.0,
+      color: Colors.blue,
+    ),
+    ListTile(
+      title: Text(
+          'Honestly Without you in my lif Deep inside I ve never felt alive'),
+      subtitle: Text('Deep End - Stray Kids'),
+    ),
+  ];
 }

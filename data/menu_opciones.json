@@ -1,0 +1,32 @@
+{
+    "nombreApp" : "Componentes 5a",
+    "iconApp"   : "icon",
+    "rutas" : [
+        {
+            "ruta" : "alert",
+            "icon" : "add_alert",
+            "texto" : "Alertas"
+        },
+        {
+            "ruta" : "inputs",
+            "icon" : "input",
+            "texto": "Entradas de datos"
+        },
+        {
+            "ruta" : "inputs",
+            "icon" : "folder_open",
+            "texto": "Cards - Tarjetas"
+        },
+        {
+            "ruta" : "firebase",
+            "icon" : "data",
+            "texto": "Firebase Storage"
+        },
+        {
+            "ruta" : "list",
+            "icon" : "list",
+            "texto": "Listas y Scrolls"
+        }
+
+    ]
+}
