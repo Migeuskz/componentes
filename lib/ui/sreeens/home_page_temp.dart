@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:componentes/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +18,23 @@ class HomePageTemp extends StatelessWidget {
 }
 
 Widget _lista() {
-  print(menuProvider.opciones);
+  /* print(menuProvider.opciones);
+     menuProvider.loadData().then((opciones) {
+     print('_lista: ');
+     print(opciones);
+  });
   return ListView(
     children: _listaItems(),
+  );*/
+  return FutureBuilder(
+    future: menuProvider.loadData(),
+    builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+      print('builder: ');
+      print(snapshot.data);
+      return ListView(
+        children: _listaItems(snapshot.data),
+      );
+    },
   );
 }
 

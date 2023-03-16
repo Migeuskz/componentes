@@ -26,6 +26,11 @@
             "ruta" : "list",
             "icon" : "list",
             "texto": "Listas y Scrolls"
+        },
+        {
+            "ruta" : "camara",
+            "icon" : "camara",
+            "texto": "Tomar Foto"
         }
 
     ]
