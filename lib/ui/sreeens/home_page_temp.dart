@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:componentes/providers/menu_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -32,34 +30,56 @@ Widget _lista() {
       print('builder: ');
       print(snapshot.data);
       return ListView(
-        children: _listaItems(snapshot.data),
+        children: _listaItems(snapshot.data as List<dynamic>),
       );
     },
   );
 }
 
-List<Widget> _listaItems() {
-  return const [
-    ListTile(
-      title: Text('Stray Kids everywere all around the world'),
-      subtitle: Text('You make Stray Kids Stay'),
-    ),
-    Divider(
-      thickness: 4.0,
-      color: Colors.blue,
-    ),
-    ListTile(
-      title: Text('Incluso si hablo en voz alta, nadie escucha'),
-      subtitle: Text('Another Day - Stray Kids'),
-    ),
-    Divider(
-      thickness: 4.0,
-      color: Colors.blue,
-    ),
-    ListTile(
-      title: Text(
-          'Honestly Without you in my lif Deep inside I ve never felt alive'),
-      subtitle: Text('Deep End - Stray Kids'),
-    ),
-  ];
+List<Widget> _listaItems(List<dynamic> data) {
+  final List<Widget> opciones = [];
+
+  data.forEach((opt) {
+    final tile = ListTile(
+      title: Text(opt['texto']),
+      leading: const Icon(
+        Icons.account_box,
+        color: Colors.blueAccent,
+      ),
+      trailing: const Icon(
+        Icons.keyboard_arrow_right,
+        color: Colors.blueAccent,
+      ),
+      subtitle: Text(opt['texto2']),
+      onTap: () {},
+    );
+    opciones
+      ..add(tile)
+      ..add(const Divider());
+  });
+  return opciones;
+
+  // return const [
+  //   ListTile(
+  //     title: Text('Stray Kids everywere all around the world'),
+  //     subtitle: Text('You make Stray Kids Stay'),
+  //   ),
+  //   Divider(
+  //     thickness: 4.0,
+  //     color: Colors.blue,
+  //   ),
+  //   ListTile(
+  //     title: Text('Incluso si hablo en voz alta, nadie escucha'),
+  //     subtitle: Text('Another Day - Stray Kids'),
+  //   ),
+  //   Divider(
+  //     thickness: 4.0,
+  //     color: Colors.blue,
+  //   ),
+  //   ListTile(
+  //     title: Text(
+  //         'Honestly Without you in my lif Deep inside I ve never felt alive'),
+  //     subtitle: Text('Deep End - Stray Kids'),
+  //   ),
+  // ];
 }
