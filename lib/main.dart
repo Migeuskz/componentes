@@ -1,5 +1,6 @@
 import 'package:componentes/ui/sreeens/alerts_screen.dart';
 import 'package:componentes/ui/sreeens/home_page_temp.dart';
+import 'package:componentes/ui/sreeens/inputs_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -15,8 +16,9 @@ class MyApp extends StatelessWidget {
         // home:HomePageTemp(),
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => HomePageTemp(),
-          'alert': (BuildContext context) => AlertsScreen(),
+          '/': (BuildContext context) => const HomePageTemp(),
+          'alert': (BuildContext context) => const AlertsScreen(),
+          'inputs': (BuildContext context) => const InputsScreen(),
         },
         onGenerateRoute: (RouteSettings settings) {
           print('Ruta llamada: ${settings.name}');
