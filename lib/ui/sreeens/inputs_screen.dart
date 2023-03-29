@@ -9,6 +9,11 @@ class InputsScreen extends StatefulWidget {
 
 class _InputsScreenState extends State<InputsScreen> {
   String _userName = '';
+  String _password = '';
+  String _email = '';
+  String _fecha = '';
+  final TextEditingController _inputFieldDataController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +23,14 @@ class _InputsScreenState extends State<InputsScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
         children: [
+          const Divider(),
           _crearEntradaNombre(),
+          const Divider(),
           _crearEntradaPwsd(),
+          const Divider(),
+          _crearEntradaMail(),
+          const Divider(),
+          _crearEntradaFecha(),
         ],
       ),
     );
@@ -57,7 +68,7 @@ class _InputsScreenState extends State<InputsScreen> {
 
   Widget _crearEntradaPwsd() {
     return TextField(
-      autofocus: true,
+      autofocus: false,
       textAlign: TextAlign.center,
       textCapitalization: TextCapitalization.sentences,
       style: const TextStyle(
@@ -83,8 +94,86 @@ class _InputsScreenState extends State<InputsScreen> {
       ),
       onChanged: (valor) {
         _userName = valor;
-        print(_userName);
+        print(_password);
       },
     );
+  }
+
+  Widget _crearEntradaMail() {
+    return TextField(
+      autofocus: false,
+      textAlign: TextAlign.center,
+      textCapitalization: TextCapitalization.sentences,
+      style: const TextStyle(
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+      ),
+      cursorColor: Colors.red,
+      cursorRadius: const Radius.circular(10.0),
+      cursorWidth: 5.0,
+      keyboardType: TextInputType.emailAddress,
+      // maxLines: 2,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        hintText: "Escriba su Email",
+        labelText: "E-mail: ",
+
+        // helperText: "Nombre",
+        prefixIcon: const Icon(Icons.mail),
+        // iconColor: Colors.blueGrey,
+        // prefix: CircularProgressIndicator(),
+      ),
+      onChanged: (valor) {
+        _userName = valor;
+        print(_email);
+      },
+    );
+  }
+
+  Widget _crearEntradaFecha() {
+    return TextField(
+      autofocus: false,
+      textAlign: TextAlign.center,
+      textCapitalization: TextCapitalization.sentences,
+      style: const TextStyle(
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+      ),
+      cursorColor: Colors.red,
+      cursorRadius: const Radius.circular(10.0),
+      cursorWidth: 5.0,
+      keyboardType: TextInputType.datetime,
+      // maxLines: 2,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+        hintText: "Escriba su Fecha de Nacimiento",
+        labelText: "Fecha de nacimiento: ",
+
+        // helperText: "Nombre",
+        prefixIcon: const Icon(Icons.calendar_month),
+        // iconColor: Colors.blueGrey,
+        // prefix: CircularProgressIndicator(),
+      ),
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+        _selectDate(context);
+      },
+    );
+  }
+
+  _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2018),
+      lastDate: DateTime(2025),
+    );
+    if (picked != null) {
+      setState(() {
+        _fecha = picked.toString();
+        print(_fecha);
+        _inputFieldDataController.text = _fecha;
+      });
+    }
   }
 }
