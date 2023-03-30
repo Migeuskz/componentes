@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class InputsScreen extends StatefulWidget {
   const InputsScreen({super.key});
@@ -12,7 +13,7 @@ class _InputsScreenState extends State<InputsScreen> {
   String _password = '';
   String _email = '';
   String _fecha = '';
-  final TextEditingController _inputFieldDataController =
+  final TextEditingController _inputFieldDateController =
       TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,8 @@ class _InputsScreenState extends State<InputsScreen> {
           _crearEntradaMail(),
           const Divider(),
           _crearEntradaFecha(),
+          const Divider(),
+          _crearDropDown(),
         ],
       ),
     );
@@ -132,7 +135,8 @@ class _InputsScreenState extends State<InputsScreen> {
 
   Widget _crearEntradaFecha() {
     return TextField(
-      autofocus: false,
+      controller: _inputFieldDateController,
+      enableInteractiveSelection: false,
       textAlign: TextAlign.center,
       textCapitalization: TextCapitalization.sentences,
       style: const TextStyle(
@@ -171,9 +175,27 @@ class _InputsScreenState extends State<InputsScreen> {
     if (picked != null) {
       setState(() {
         _fecha = picked.toString();
-        print(_fecha);
-        _inputFieldDataController.text = _fecha;
+        // print(_fecha);
+        _fecha = DateFormat('dd-MM-yyyy').format(picked);
+        _inputFieldDateController.text =
+            _fecha; // muestra la fecha en el TextField
       });
     }
+  }
+
+  Widget _crearDropDown() {
+    return DropdownButton(items: const [], onChanged: (opt) {});
+  }
+
+  List<DropdownMenuItem<String>> getOptionsDropDown() {
+    List<String> _lenguajes = ['Java', 'PHP', 'JavaScript', 'Dart'];
+    List<DropdownMenuItem<String>> lista = List();
+    _lenguajes.forEach((lenguaje) {
+      lista.add(DropdownMenuItem(
+        child: Text(lenguaje),
+        value: lenguaje,
+      ));
+    });
+    return lista;
   }
 }

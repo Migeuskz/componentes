@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:componentes/ui/sreeens/screens.dart';
+import 'package:componentes/utils/app_theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -32,15 +33,7 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
             builder: (BuildContext context) => const AlertsScreen());
       },
-      theme: ThemeData.dark().copyWith(
-        //Color primario
-        primaryColor: Colors.indigo,
-        // AppBar Theme:
-        appBarTheme: const AppBarTheme(
-          color: Colors.blueGrey,
-          elevation: 0,
-        ),
-      ),
+      theme: AppTheme.lightTheme,
     );
   }
 }
